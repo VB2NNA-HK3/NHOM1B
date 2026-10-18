@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HỘP XANH — Ý tưởng khởi nghiệp | AI ứng dụng 06050</title>
+<meta name="description" content="Trang mẫu nâng cao — học phần AI ứng dụng (06050), Viện Công nghệ tiên tiến và Trí tuệ nhân tạo, Trường Đại học Hùng Vương TP.HCM.">
+<link rel="icon" type="image/png" href="imgs/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,300..500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TRANG MẪU NÂNG CAO — HỌC PHẦN AI ỨNG DỤNG (06050)
+     Viện Công nghệ tiên tiến và Trí tuệ nhân tạo — ĐH Hùng Vương TP.HCM
+
+     Trang mẫu duy nhất của học phần, theo Đề cương Bản 4.
+     Đủ BỐN MỤC của đồ án cuối kỳ (Mục 5.2 đề cương):
+       1. Ý tưởng khởi nghiệp   2. Thông điệp và bộ nhận diện
+       3. Video 60-90 giây      4. Thông tin nhóm
+
+     CÁCH DÙNG
+     1. Buổi 1: đăng cả thư mục này lên Netlify hoặc GitHub Pages
+        để tập triển khai — xem HUONG_DAN.md.
+     2. Từ Buổi 2: thay dần nội dung bằng ý tưởng của nhóm.
+     3. Mọi chỗ cần thay đánh dấu   [[ THAY ]]   — Ctrl+F tìm là ra hết.
+     4. Xoá khối <section id="tiendo"> trước khi nộp.
+     5. Thay 3 ảnh trong imgs/ bằng ảnh của nhóm, GIỮ NGUYÊN TÊN TỆP
+        (hero.jpg, frame.jpg, iris.jpg) thì không phải sửa mã.
+     ═══════════════════════════════════════════════════════════════════════ -->
+
+<style>
+:root{
+  /* ── nền tối ── */
+  --navy-deep:#0A1B2B; --navy:#12293F; --dhv:#1A3C6E;
+  /* ── nền sáng ── */
+  --sand:#F1E7D8; --sand-2:#E5D9C6; --cream:#F7F1E8;
+  /* ── chữ và nhấn ── */
+  --ink:#2B2620; --cam:#F4831F; --cam-dark:#C4640D; --cam-soft:#F8A85F;
+  --mo-toi:rgba(247,241,232,.56); --mo-sang:rgba(43,38,32,.58);
+  --line-toi:rgba(247,241,232,.16); --line-sang:rgba(43,38,32,.16);
+  --display:clamp(2.6rem,7.6vw,7.4rem);
+  --E:cubic-bezier(.16,1,.3,1);
+  /* ── biến do JS ghi mỗi khung hình ── */
+  --p1:0; --p2:0; --p3:0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--navy-deep);color:var(--cream);
+  font-family:Archivo,"Segoe UI",system-ui,sans-serif;
+  font-size:17px;line-height:1.62;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+
+/* ═══ chữ ═══ */
+.dis{
+  font-weight:800;font-stretch:74%;letter-spacing:-.03em;line-height:.94;
+  margin:0;text-wrap:balance;
+}
+.dis em{font-style:italic;font-weight:300;font-stretch:88%;color:var(--cam-soft)}
+.mono{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;
+}
+.lede{font-size:clamp(1rem,1.5vw,1.22rem);max-width:56ch;line-height:1.66}
+.wrap{width:min(1180px,90vw);margin:0 auto}
+.sang{background:var(--sand);color:var(--ink)}
+.sang .mono{color:var(--mo-sang)}
+.toi .mono{color:var(--mo-toi)}
+
+/* ═══ hạt phim phủ toàn trang ═══ */
+.grain{
+  position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+}
+
+/* ═══ điều hướng ═══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:80;
+  display:flex;align-items:center;gap:26px;
+  padding:16px clamp(18px,5vw,54px);
+  background:linear-gradient(180deg,rgba(10,27,43,.82),rgba(10,27,43,0));
+  backdrop-filter:blur(3px);
+}
+nav .kh{background:var(--cream);border-radius:3px;padding:5px 8px;display:flex}
+nav .kh img{height:20px;width:auto}
+nav b{font-stretch:78%;letter-spacing:.02em;font-size:15px;margin-right:auto;color:var(--cream)}
+nav a{
+  color:var(--mo-toi);text-decoration:none;font-family:"IBM Plex Mono",monospace;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  transition:color .4s var(--E);
+}
+nav a:hover,nav a:focus-visible{color:var(--cam-soft)}
+@media(max-width:760px){nav .an{display:none}}
+
+/* ═══ sân khấu ghim ═══ */
+.stage{position:relative}
+.pin{position:sticky;top:0;height:100svh;overflow:hidden;display:grid}
+
+/* ─── 1. HERO thị sai ─── */
+#s1{height:300svh}
+#s1 .anh{
+  position:absolute;left:0;right:0;top:-8%;bottom:-8%;
+  transform:translateY(calc(var(--p1) * -101px)) scale(calc(1.06 + var(--p1)*.06));
+  will-change:transform;
+}
+#s1 .anh img{width:100%;height:100%;object-fit:cover}
+#s1 .veil{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,27,43,.58) 0%,rgba(10,27,43,.14) 34%,rgba(10,27,43,.76) 100%);
+}
+#s1 .noi{
+  position:relative;align-self:end;padding:0 clamp(18px,5vw,54px) clamp(42px,8vh,96px);
+  opacity:calc(1 - var(--p1)*1.35);
+  transform:translateY(calc(var(--p1)*-60px));
+}
+#s1 h1{
+  /* cỡ tính từ SỐ KÝ TỰ để không tràn ở màn hẹp */
+  font-size:min(var(--display),calc(90vw / (9 * .52)));
+  white-space:nowrap;
+}
+.strap{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:22px}
+.strap span{color:var(--mo-toi)}
+.strap b{color:var(--cream);font-weight:500}
+.cuon{
+  position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:calc(1 - var(--p1)*3);
+}
+.cuon i{display:block;width:1px;height:38px;background:linear-gradient(var(--cam),transparent);animation:sink 2.4s var(--E) infinite}
+@keyframes sink{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ─── 2. KHUNG MỞ ─── */
+#s2{height:360svh;background:var(--navy-deep)}
+#s2 .anh{
+  position:absolute;inset:0;
+  clip-path:inset(calc(34% - var(--p2)*34%) calc(30% - var(--p2)*30%) round 4px);
+  will-change:clip-path;
+}
+#s2 .anh img{width:100%;height:100%;object-fit:cover}
+#s2 .so{
+  position:absolute;top:clamp(76px,12vh,132px);right:clamp(18px,5vw,54px);
+  font-weight:800;font-stretch:70%;font-size:clamp(4rem,13vw,11rem);line-height:.8;
+  color:var(--cam);opacity:calc(.25 + var(--p2)*.75);
+}
+#s2 .cap{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:0 clamp(18px,5vw,54px) clamp(30px,6vh,64px);
+  opacity:var(--p2);
+}
+#s2 .cap::before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:56%;z-index:-1;
+  background:linear-gradient(0deg,rgba(10,27,43,.92),transparent);
+}
+#s2 .cap h2{max-width:20ch;font-size:clamp(1.9rem,4.4vw,3.6rem)}
+#s2 .cap p{max-width:52ch;color:var(--mo-toi);margin:.7em 0 0}
+
+/* ─── 3. MỐNG MẮT ─── */
+#s3{height:320svh;background:var(--sand)}
+#s3 .pin{place-items:center}
+#s3 .anh{
+  position:absolute;inset:0;
+  clip-path:circle(calc(var(--p3)*78%) at 50% 50%);
+  will-change:clip-path;
+}
+#s3 .anh img{width:100%;height:100%;object-fit:cover}
+#s3 h2{
+  position:relative;z-index:2;text-align:center;padding:0 6vw;
+  font-size:clamp(2.1rem,6.4vw,5.6rem);
+  color:#fff;mix-blend-mode:difference;
+  opacity:calc(1 - max(0, var(--p3) - .62) * 2.6);
+}
+#s3 .cap{
+  position:absolute;left:0;right:0;bottom:clamp(26px,6vh,58px);z-index:2;
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  padding:0 clamp(18px,5vw,54px);
+  opacity:calc(max(0, var(--p3) - .5) * 2);color:var(--cream);
+}
+#s3 .cap span{text-shadow:0 1px 14px rgba(10,27,43,.7)}
+
+
+/* ═══ dải thường ═══ */
+.band{padding:clamp(72px,11vh,148px) 0}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.eyebrow::after{content:"";flex:1;height:1px;background:currentColor;opacity:.22}
+.band h2{font-size:clamp(1.9rem,4.2vw,3.4rem);margin:0 0 .5em}
+.grid{display:grid;gap:clamp(20px,3vw,40px);margin-top:clamp(34px,5vh,62px)}
+.g3{grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.col h3{font-size:1.16rem;font-stretch:84%;margin:.6em 0 .35em}
+.col p{margin:0;color:var(--mo-sang)}
+.toi .col p{color:var(--mo-toi)}
+.num{font-weight:800;font-stretch:70%;font-size:2.6rem;color:var(--cam);line-height:1}
+
+/* khung giữ chỗ ảnh */
+.ph{
+  aspect-ratio:4/3;border:1px solid var(--line-sang);display:grid;place-items:center;
+  text-align:center;padding:26px;color:var(--mo-sang);background:rgba(43,38,32,.03);
+}
+.toi .ph{border-color:var(--line-toi);color:var(--mo-toi);background:rgba(247,241,232,.03)}
+.ph b{display:block;color:var(--ink);font-stretch:84%;margin-bottom:6px}
+.toi .ph b{color:var(--cream)}
+.ph code{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;text-transform:none}
+
+/* bảng giá / bảng kẻ dòng */
+.rows{margin-top:clamp(28px,4vh,54px)}
+.row{
+  display:grid;grid-template-columns:auto 1fr auto;gap:10px 26px;align-items:baseline;
+  padding:17px 0;border-top:1px solid var(--line-sang);
+}
+.toi .row{border-color:var(--line-toi)}
+.row b{font-stretch:84%;font-weight:600}
+.row .n{color:var(--mo-sang);font-size:14.5px;grid-column:2}
+.toi .row .n{color:var(--mo-toi)}
+.row .v{color:var(--cam-dark);white-space:nowrap}
+.toi .row .v{color:var(--cam)}
+
+/* nút tải */
+
+/* khối lưu ý */
+.luu{border-left:2px solid var(--cam);padding:16px 0 16px 22px;margin-top:30px;max-width:64ch}
+.luu p{margin:0;color:var(--mo-sang)}
+.toi .luu p{color:var(--mo-toi)}
+
+/* FAQ */
+details{border-top:1px solid var(--line-sang);padding:16px 0}
+details summary{cursor:pointer;font-stretch:84%;font-weight:600;list-style:none;display:flex;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+";color:var(--cam-dark);font-weight:800}
+details[open] summary::before{content:"–"}
+details p{margin:.7em 0 0 28px;color:var(--mo-sang);max-width:62ch}
+
+/* chân trang */
+footer{background:var(--navy-deep);padding:clamp(56px,8vh,100px) 0 44px;border-top:1px solid var(--line-toi)}
+.nhanai{border:1px solid rgba(244,131,31,.38);padding:22px 26px;margin-bottom:38px;max-width:78ch}
+.nhanai b{color:var(--cam)}
+.nhanai p{margin:.6em 0 0;color:var(--mo-toi);font-size:14.5px}
+.chan{display:flex;gap:26px;justify-content:space-between;flex-wrap:wrap;align-items:flex-end}
+.chan .kh{background:var(--cream);border-radius:3px;padding:9px 13px;display:inline-flex}
+.chan .kh img{height:34px;width:auto}
+.chan p{margin:0;color:var(--mo-toi);font-size:14px}
+
+/* khối tiến độ — xoá trước khi nộp */
+#tiendo{background:var(--navy);border-top:1px solid var(--line-toi)}
+#tiendo .row{border-color:var(--line-toi)}
+#tiendo .row b,#tiendo .row .v{color:var(--cream)}
+
+/* ═══ chuyển động theo từ ═══ */
+.w{display:inline-block;opacity:0;transform:translateY(.42em);
+   transition:opacity .9s var(--E) var(--d,0ms),transform .9s var(--E) var(--d,0ms)}
+.seen .w{opacity:1;transform:none}
+[data-rev]{opacity:0;transform:translateY(16px);
+   transition:opacity 1s var(--E) var(--d,0ms),transform 1s var(--E) var(--d,0ms)}
+[data-rev].seen{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .stage{height:auto!important}
+  .pin{position:static;height:auto;min-height:72svh;padding:76px 0}
+  #s1 .anh,#s2 .anh,#s3 .anh{position:relative;inset:auto;transform:none;clip-path:none!important;height:56svh}
+  #s1 .noi,#s2 .cap,#s3 .cap,.cuon{opacity:1!important;transform:none!important;position:static;padding:26px clamp(18px,5vw,54px)}
+  #s3 h2{mix-blend-mode:normal;color:var(--ink);opacity:1!important}
+  #s2 .so{position:static;opacity:1}
+  .w,[data-rev]{opacity:1!important;transform:none!important;transition:none}
+  .cuon i{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<nav>
+  <span class="kh"><img src="imgs/DHV_Logo.png" alt="Logo Trường Đại học Hùng Vương TP. Hồ Chí Minh"></span>
+  <b>HỘP XANH</b>
+  <a class="an" href="#ytuong">Ý tưởng</a>
+  <a class="an" href="#nhandien">Nhận diện</a>
+  <a class="an" href="#video">Video</a>
+  <a href="#nhom">Nhóm</a>
+</nav>
+
+<!-- ══════════ 1 · HERO — [[ THAY ]] tên dự án và khẩu hiệu ══════════ -->
+<section class="stage toi" id="s1">
+  <div class="pin">
+    <div class="anh"><img src="imgs/hero.jpg" alt="Khuôn viên trường lúc hoàng hôn, lối đi lát đá dẫn tới toà nhà gạch" fetchpriority="high"></div>
+    <div class="veil"></div>
+    <div class="noi wrap">
+      <p class="mono" data-rev>Ý tưởng khởi nghiệp sinh viên · Ví dụ minh hoạ</p>
+      <h1 class="dis" data-split>HỘP <em>XANH</em></h1>
+      <p class="lede" data-split style="margin-top:.7em">Hộp đựng thức ăn dùng nhiều lần cho căng tin đại học. Mượn khi ăn, trả khi về, không rác thải nhựa.</p>
+      <div class="strap mono">
+        <span data-rev><b>01</b> &nbsp;Giảm rác nhựa dùng một lần</span>
+        <span data-rev><b>02</b> &nbsp;Dành cho căng tin trường học</span>
+        <span data-rev><b>03</b> &nbsp;Không tốn thêm chi phí cho sinh viên</span>
+      </div>
+    </div>
+    <div class="cuon mono"><span>Cuộn xuống</span><i></i></div>
+  </div>
+</section>
+
+<!-- ══════════ 2 · MỤC 1 — Ý TƯỞNG KHỞI NGHIỆP (Buổi 1–2) ══════════ -->
+<section class="stage toi" id="s2">
+  <div class="pin">
+    <div class="anh"><img src="imgs/frame.jpg" alt="Các hộp inox đựng thức ăn xếp trên bàn, bên cạnh là dụng cụ ăn bằng kim loại"></div>
+    <div class="so">01</div>
+    <div class="cap">
+      <p class="mono">Mục 1 · Ý tưởng khởi nghiệp · Điền sau Buổi 1–2</p>
+      <h2 class="dis" data-split>Một chiếc hộp, <em>năm trăm</em> bữa cơm</h2>
+      <p data-split>Mỗi ngày căng tin thải ra hàng nghìn hộp xốp dùng một lần. Hộp inox quay vòng thay thế toàn bộ số đó mà sinh viên không phải trả thêm đồng nào.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band sang" id="ytuong">
+  <div class="wrap">
+    <p class="mono eyebrow" data-rev>Vấn đề · Giải pháp · Khách hàng</p>
+    <h2 class="dis" data-split>Ba câu hỏi phải trả lời <em>ngay</em></h2>
+    <div class="grid g3">
+      <div class="col" data-rev><div class="num">01</div><h3>Vấn đề</h3>
+        <p>Mỗi ngày căng tin trường thải ra hàng nghìn hộp xốp dùng một lần. Sinh viên không có lựa chọn nào khác vì mang hộp riêng thì bất tiện và hay quên.</p></div>
+      <div class="col" data-rev><div class="num">02</div><h3>Giải pháp</h3>
+        <p>Đặt cọc một lần để mượn hộp inox tại quầy, ăn xong trả vào thùng thu hồi đặt ở sảnh. Hộp được rửa công nghiệp và quay vòng trong ngày.</p></div>
+      <div class="col" data-rev><div class="num">03</div><h3>Khách hàng</h3>
+        <p>Sinh viên ăn trưa tại căng tin, và chính căng tin — bên tiết kiệm được tiền mua hộp xốp mỗi tháng.</p></div>
+    </div>
+    <div class="luu" data-rev><p><b>[[ THAY ]]</b> Khoảng <b>300 từ</b>, <b>viết bằng lời của nhóm</b> — đừng để AI viết hộ rồi dán nguyên. Số liệu nào đưa lên đây phải kiểm chứng được: rubric có riêng tiêu chí <b>kiểm chứng và độ tin cậy</b>, và tài liệu tham khảo bịa đặt bị trừ <b>2,0 điểm mỗi tài liệu</b>.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ MỤC 2 — THÔNG ĐIỆP VÀ BỘ NHẬN DIỆN (Buổi 3, từ TH 4) ══════════ -->
+<section class="band" id="nhandien" style="background:var(--cream);color:var(--ink)">
+  <div class="wrap">
+    <p class="mono eyebrow" data-rev>Mục 2 · Thông điệp và bộ nhận diện · Buổi 3 · Bài thực hành TH 4</p>
+    <h2 class="dis" data-split>Thông điệp và <em>bộ nhận diện</em></h2>
+    <p class="lede" data-split>Một thông điệp chính, một ảnh chủ đề, và một poster hoặc infographic. <b>Mỗi ảnh bắt buộc có alt-text</b> mô tả nội dung cho người dùng trình đọc màn hình.</p>
+    <div class="rows" style="margin-bottom:34px">
+      <div class="row" data-rev><b>[[ THAY ]] Thông điệp chính</b><span class="n">Một câu, dưới 12 từ, đọc là nhớ</span><span class="v mono">Mượn – Ăn – Trả</span></div>
+    </div>
+    <div class="grid g2">
+      <div class="ph" data-rev><div><b>Ảnh chủ đề</b>
+        <code>&lt;img src="imgs/chu-de.png" alt="Mô tả ảnh"&gt;</code></div></div>
+      <div class="ph" data-rev><div><b>Poster hoặc infographic</b>
+        <code>&lt;img src="imgs/poster.png" alt="Mô tả poster"&gt;</code></div></div>
+    </div>
+    <div class="luu" data-rev><p><b>Mẹo alt-text.</b> Viết đúng thứ người khiếm thị cần biết, không viết “hình ảnh poster”. Ví dụ đạt: <i>“Poster xanh lá, hình hộp inox và mũi tên vòng tròn, dòng chữ lớn Mượn – Ăn – Trả, góc dưới ghi Căng tin B, tầng 1”.</i></p></div>
+  </div>
+</section>
+
+<!-- ══════════ 3 · MỤC 3 — VIDEO MINH HỌA 60–90 GIÂY (Buổi 3) ══════════ -->
+<section class="stage sang" id="s3">
+  <div class="pin">
+    <div class="anh"><img src="imgs/iris.jpg" alt="Nhìn từ trên xuống: hộp inox đựng rau củ tươi, túi lưới và cà rốt trên mặt bàn sáng"></div>
+    <h2 class="dis" data-split>Chín mươi giây để <em>thuyết phục</em></h2>
+    <div class="cap mono">
+      <span>Mục 3 · Video 60–90 giây · Phụ đề tiếng Việt</span>
+      <span>Buổi 3 · Có dòng “Nội dung có sử dụng AI tạo sinh”</span>
+    </div>
+  </div>
+</section>
+
+<section class="band sang" id="video">
+  <div class="wrap">
+    <p class="mono eyebrow" data-rev>Mục 3 · Video minh họa 60–90 giây</p>
+    <h2 class="dis" data-split>Ba điều <em>bắt buộc</em> có</h2>
+    <div class="rows" style="margin-bottom:34px">
+      <div class="row" data-rev><b>Lời dẫn và phụ đề tiếng Việt</b><span class="n">Soát lại tên riêng và số liệu trong phụ đề trước khi nộp</span><span class="v mono">Bắt buộc</span></div>
+      <div class="row" data-rev><b>Ít nhất hai thao tác video</b><span class="n">Cắt ghép · chuyển cảnh · lồng nhạc · chèn chữ · chỉnh tốc độ…</span><span class="v mono">Bắt buộc</span></div>
+      <div class="row" data-rev><b>Nhãn AI</b><span class="n">Dòng “Nội dung có sử dụng AI tạo sinh” hiện trong video</span><span class="v mono">Bắt buộc</span></div>
+    </div>
+    <div class="ph" style="aspect-ratio:16/9" data-rev>
+      <div><b>Chỗ đặt video</b>
+      <p style="margin:.5em 0">Tải video lên YouTube ở chế độ <b>không công khai</b> (unlisted), rồi thay khối này bằng thẻ nhúng. Đây là quy định kỹ thuật ở Mục 5.5 đề cương.</p>
+      <code>&lt;iframe src="https://www.youtube.com/embed/MA_VIDEO" …&gt;</code></div>
+    </div>
+    <div class="luu" data-rev><p><b>Đừng tải tệp video thẳng lên trang.</b> Video 60–90 giây nặng vài chục đến vài trăm MB — trên Netlify sẽ ngốn hết tín dụng miễn phí, trên GitHub Pages sẽ vượt giới hạn kho lưu trữ. Cả hai trường hợp trang đều tải rất chậm.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ MỤC 4 — THÔNG TIN NHÓM ══════════ -->
+<section class="band sang" id="nhom">
+  <div class="wrap">
+    <p class="mono eyebrow" data-rev>Mục 4 · Thông tin nhóm</p>
+    <h2 class="dis" data-split>Nhóm <em>thực hiện</em></h2>
+    <p class="lede" data-split>Nhóm <b>2–4 học viên</b>. Học viên khó sắp xếp làm nhóm được làm cá nhân, yêu cầu như nhau. Bảng phân công dưới đây phải trùng với bảng trong <code>Readme.md</code> của tệp zip.</p>
+    <div class="rows">
+      <div class="row" data-rev><b>[[ THAY ]] Họ và tên</b><span class="n">Nhóm trưởng · ý tưởng và nội dung Mục 1</span><span class="v mono">MSSV</span></div>
+      <div class="row" data-rev><b>[[ THAY ]] Họ và tên</b><span class="n">Thông điệp và bộ nhận diện · Mục 2</span><span class="v mono">MSSV</span></div>
+      <div class="row" data-rev><b>[[ THAY ]] Họ và tên</b><span class="n">Video và phụ đề · Mục 3</span><span class="v mono">MSSV</span></div>
+      <div class="row" data-rev><b>[[ THAY ]] Họ và tên</b><span class="n">Kiểm chứng số liệu · đăng trang và nộp tệp zip</span><span class="v mono">MSSV</span></div>
+    </div>
+    <div class="rows" style="margin-top:34px">
+      <div class="row" data-rev><b>TS. Nguyễn Quốc Trình</b><span class="n">Viện Công nghệ tiên tiến và Trí tuệ nhân tạo</span><span class="v mono">Giáo viên hướng dẫn</span></div>
+    </div>
+    <div class="luu" data-rev><p>Chỉ đăng ảnh thành viên trong nhóm và phải có sự đồng ý của từng bạn. Không đăng ảnh người ngoài nhóm. <b>Không đặt biểu mẫu thu thập thông tin cá nhân trên trang</b> — thiếu thông báo xử lý dữ liệu bị trừ 2,0 điểm.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ CÂU HỎI THƯỜNG GẶP ══════════ -->
+<section class="band" style="background:var(--sand-2);color:var(--ink)">
+  <div class="wrap">
+    <p class="mono eyebrow" data-rev>Câu hỏi thường gặp</p>
+    <h2 class="dis" data-split>Những điều <em>hay hỏi</em></h2>
+    <div style="margin-top:34px">
+      <details data-rev><summary>Mượn hộp có mất phí không?</summary><p>Không mất phí sử dụng. Chỉ đặt cọc một lần và nhận lại đủ khi trả hộp.</p></details>
+      <details data-rev><summary>Làm mất hộp thì sao?</summary><p>Mất cọc của chiếc hộp đó. Mức cọc đặt bằng giá vốn nên không ai bị thiệt.</p></details>
+      <details data-rev><summary>Hộp được rửa như thế nào?</summary><p>Rửa công nghiệp ở nhiệt độ cao ngay trong ngày, theo quy trình vệ sinh của căng tin.</p></details>
+      <details data-rev><summary>Trang này có dùng AI không?</summary><p>Có. Xem nhãn nội dung AI ở chân trang — ghi rõ từng khâu.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TIẾN ĐỘ — XOÁ TOÀN BỘ KHỐI NÀY TRƯỚC KHI NỘP ══════════ -->
+<section class="band toi" id="tiendo">
+  <div class="wrap">
+    <p class="mono eyebrow" data-rev>Chỉ dành cho nhóm · Xoá trước khi nộp</p>
+    <h2 class="dis" data-split>Mỗi buổi xong <em>một phần</em></h2>
+    <p class="lede" data-split>Bốn mục trải đều sáu buổi. Không buổi nào phải làm thêm việc ngoài bài thực hành.</p>
+    <div class="rows">
+      <div class="row" data-rev><b>Buổi 1</b><span class="n">Lập nhóm · tạo tài khoản Netlify hoặc GitHub · đăng thử trang mẫu này</span><span class="v mono">Triển khai</span></div>
+      <div class="row" data-rev><b>Buổi 2</b><span class="n">Chốt ý tưởng · viết 300 từ vấn đề – giải pháp – khách hàng</span><span class="v mono">Mục 1</span></div>
+      <div class="row" data-rev><b>Trước Buổi 3</b><span class="n">Nộp <b>TH 2</b> — câu lệnh cho công việc của tôi (10% điểm)</span><span class="v mono">→ docs/</span></div>
+      <div class="row" data-rev><b>Buổi 3</b><span class="n">Ảnh chủ đề, poster · quay và dựng video 60–90 giây</span><span class="v mono">Mục 2 · 3</span></div>
+      <div class="row" data-rev><b>Trước Buổi 5</b><span class="n">Nộp <b>TH 4</b> — ảnh hoặc poster cho đồ án (10% điểm)</span><span class="v mono">→ Mục 2</span></div>
+      <div class="row" data-rev><b>Buổi 5</b><span class="n">Kiểm chứng mọi số liệu trong Mục 1 · soát phụ đề video</span><span class="v mono">Rà soát</span></div>
+      <div class="row" data-rev><b>Buổi 6</b><span class="n">Rà nhãn AI, bản quyền ảnh, dữ liệu cá nhân</span><span class="v mono">Rà soát</span></div>
+      <div class="row" data-rev><b>3 tuần sau Buổi 6</b><span class="n">Điền phân công · đăng bản cuối · nộp tệp zip trên LMS</span><span class="v mono">Mục 4 · Nộp</span></div>
+    </div>
+    <div class="luu" data-rev><p><b>Trước khi nộp:</b> tìm hết chuỗi <code>[[ THAY ]]</code> và thay sạch · xoá khối <code>&lt;section id="tiendo"&gt;</code> này · thay ba ảnh trong <code>imgs/</code> bằng ảnh của nhóm · mở bằng cửa sổ ẩn danh kiểm mọi liên kết · giữ trang chạy được <b>đến hết tuần 18</b>.</p></div>
+  </div>
+</section>
+
+<footer class="toi">
+  <div class="wrap">
+    <div class="nhanai" data-rev>
+      <b class="mono">🏷️ Nhãn nội dung do AI tạo sinh</b>
+      <p>Trang này có sử dụng công cụ AI tạo sinh trong các khâu: soạn thảo nội dung giới thiệu, thiết kế hình ảnh minh hoạ và dựng video. Toàn bộ số liệu và khẳng định đã được nhóm kiểm chứng độc lập; các khẳng định không truy được nguồn gốc đã bị gỡ bỏ. Nhãn này thực hiện theo <b>Luật Trí tuệ nhân tạo 2025 (Luật số 134/2025/QH15)</b>.</p>
+      <p><b>[[ THAY ]]</b> Ghi đúng những khâu nhóm mình thực sự dùng AI.</p>
+    </div>
+    <div class="chan">
+      <span class="kh"><img src="imgs/DHV_Logo.png" alt="Logo Trường Đại học Hùng Vương TP. Hồ Chí Minh"></span>
+      <p><b>HỘP XANH</b> — ví dụ minh hoạ cho học phần, không phải doanh nghiệp có thật.<br>
+         Đồ án học phần <b>AI ứng dụng (06050)</b> · Viện Công nghệ tiên tiến và Trí tuệ nhân tạo<br>
+         Trường Đại học Hùng Vương TP. Hồ Chí Minh · GVHD: TS. Nguyễn Quốc Trình</p>
+      <p class="mono">Ảnh: Unsplash · Trang không thu thập thông tin cá nhân</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var IT = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ── tách từ để chạy so le ── */
+  document.querySelectorAll("[data-split]").forEach(function(el){
+    var html = el.innerHTML, i = 0;
+    el.innerHTML = html.replace(/(<[^>]+>)|([^\s<]+)/g, function(m, tag, word){
+      if (tag) return tag;
+      return '<span class="w" style="--d:' + (i++ * 38) + 'ms">' + word + '</span> ';
+    });
+  });
+
+  /* ── độ trễ riêng cho từng phần tử ── */
+  document.querySelectorAll("[data-rev]").forEach(function(el, i){
+    el.style.setProperty("--d", ((i % 9) * 55) + "ms");
+  });
+
+  if (IT) {
+    document.querySelectorAll("[data-split],[data-rev]").forEach(function(el){ el.classList.add("seen"); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("seen"); io.unobserve(e.target); } });
+    }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll("[data-split],[data-rev]").forEach(function(el){ io.observe(el); });
+  }
+
+  /* ── tiến độ từng sân khấu, ghi vào biến CSS ── */
+  var stages = [["s1","--p1"],["s2","--p2"],["s3","--p3"]]
+      .map(function(x){ return { el: document.getElementById(x[0]), v: x[1] }; })
+      .filter(function(s){ return s.el; });
+  var root = document.documentElement, cho = false;
+
+  function tien(){
+    cho = false;
+    var vh = window.innerHeight;
+    stages.forEach(function(s){
+      var r = s.el.getBoundingClientRect(), d = r.height - vh;
+      var p = d > 0 ? (-r.top) / d : (r.top < vh ? 1 : 0);
+      root.style.setProperty(s.v, Math.min(1, Math.max(0, p)).toFixed(4));
+    });
+  }
+  function xep(){ if (!cho){ cho = true; requestAnimationFrame(tien); } }
+
+  if (!IT){
+    addEventListener("scroll", xep, { passive: true });
+    addEventListener("resize", xep);
+    tien();
+  }
+
+  /* ── cảnh báo nếu ảnh không tải được ── */
+  addEventListener("load", function(){
+    document.querySelectorAll("img").forEach(function(im){
+      if (!im.naturalWidth) console.warn("Ảnh không tải được:", im.getAttribute("src"));
+    });
+  });
+})();
+</script>
+</body>
+</html>
